@@ -1,0 +1,42 @@
+<app-loading *ngIf="cargando"></app-loading>
+
+<div class="row ">
+  <div class="col-2 ">
+    <img src="{{artista.images[0].url}}" alt="" class="img-thumbnail animated fadeIn">
+  </div>
+  <div class="col">
+    <h3>{{artista.name}}</h3>
+    <a href="{{artista.external_urls.spotify}}">Ir a la pagina del artista</a>
+  </div>
+  <div class="col-4">
+    <button type="button" class="btn btn-outline-danger" (click)="volver()">Regresar</button>
+  </div>
+</div>
+
+<table class="table table-striped table-dark m-5">
+  <thead>
+    <tr>
+      <th scope="col">Foto</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Album</th>
+      <th scope="col">Lanzamiento</th>
+      <th scope="col">Vista Previa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let track of topTrack, let i=index">
+
+      <td><img src="{{track['album']['images'][0]['url']}}" style="width:50px"></td>
+      <td>{{track['name']}}</td>
+      <td>{{track['album']['name']}}</td>
+      <td>{{track['album']['release_date']|date:'yyyy'}}</td>
+      <td>
+        <!-- <iframe src="{{track.external_urls.spotify|domseguro}}" width="405" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+        <!-- <iframe src="{{track.uri.split(':')[2]|domseguro:'https://open.spotify.com/embed/track/'}}" width="405" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+
+        <audio  src="{{track['preview_url']}}" controls></audio>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>

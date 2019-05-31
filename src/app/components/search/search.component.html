@@ -1,0 +1,13 @@
+<div class="row text-center">
+  <div class="col">
+    <input #termino type="text" class="form-control" placeholder="Buscar artista" (keyup)="buscar(termino.value)">
+
+  </div>
+</div>
+<div class="row text-center m-5">
+  <div class="col">
+    <app-loading *ngIf="cargando"></app-loading>
+  </div>
+</div>
+
+<app-tarjeta [items]="artistas"></app-tarjeta>      
